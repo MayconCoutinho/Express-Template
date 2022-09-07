@@ -1,23 +1,19 @@
-import express,{ Express, Request, Response } from "express";
-import cors from "cors";
 import { AddressInfo } from "net";
+import app from "./app";
+import { getAddress } from "./endpoints/getAddress";
+import { getAllAddress } from "./endpoints/getAllAdress";
+import { insertAdress } from "./endpoints/insertAdress";
 
-const app: Express = express()
+app.get("/endereco/:cep", getAddress)
+app.post("/user/:cep",insertAdress)
+app.get("/list", getAllAddress)
 
-app.use(express.json())
-app.use(cors())
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
-        const address = server.address() as AddressInfo;
-        console.log(`Servidor rodando na porta http://localhost:${address.port}`);
+       const address = server.address() as AddressInfo;
+       console.log(`Server is running in http://localhost:${address.port}`);
     } else {
-        console.error(`Erro! Ao iniciar o servidor`);
+       console.error(`Failure upon starting server.`);
     }
-})
-
-/// Precisa de ter tudo que esta em cima pra isso funcionar 
-
-app.get("/ping", (req, res) => {          
-    res.send("Pong! 🏓")
-})
+});
