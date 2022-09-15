@@ -4,10 +4,10 @@ import app from "./app";
 import connection from './data/connection';
 
 
-app.get('/alunos', async (req,res) =>{
+app.get('/cadastro', async (req,res) =>{
     try {
         const result = await connection.raw(`
-            SELECT * FROM alunos_labenu;        
+            SELECT * FROM cadastro;        
         `)       
         res.status(200).send(result[0])        
     } catch (error: any) {
@@ -16,7 +16,7 @@ app.get('/alunos', async (req,res) =>{
   
   app.get ('/alunosbuilder',async (req,res) => {
     try {
-        const result = await connection("alunos_labenu")
+        const result = await connection("cadastro")
         res.status(200).send(result)
     } catch (error:any) {
         res.status(500).send(error.sqlMessage || error.message)

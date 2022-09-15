@@ -4,7 +4,7 @@ const selectAllDados = async () => {
 
     const result = await connection
             .select("*")
-            .from("docente")
+            .from("cadastro")
 
     return result;
 }
