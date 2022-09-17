@@ -2,7 +2,6 @@ import knex from "knex";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const connection = knex({
    client: "mysql",
    connection: {
@@ -14,5 +13,4 @@ const connection = knex({
       multipleStatements: true
    },
 });
-
 export default connection
